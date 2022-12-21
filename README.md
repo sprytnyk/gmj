@@ -1,5 +1,5 @@
 # GoEmoji
 
 ```sh
-$ go get -u github.com/vald-phoenix/gmj
+$ go install github.com/vald-phoenix/gmj@latest
 ```
