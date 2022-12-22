@@ -16,13 +16,13 @@ const usage = `Usage of gmj:
 	Lists all available emojis, its codepoint, shortcode, and usage.
 
 	$ gmj -c bug
-	Gets an emoji codepoint by a provided short code.
+	Gets an emoji codepoint by a provided shortcode.
 
 	$ gmj -u bug
 	Shows a use case by a provided shortcode.
 
 	$ gmj -s dev
-	Goes through a list of emojis and returns more feasiable codepoints to be
+	Goes through a list of emojis and returns more feasiable emojis to be
 	used by a provided keyword.
 
 `
@@ -56,7 +56,7 @@ func main() {
 			)
 		}
 		fmt.Println(
-			color.HiBlueString("Total number of Emojis: "),
+			color.HiBlueString("Total number of emojis: "),
 			len(keys),
 		)
 		os.Exit(0)
@@ -82,11 +82,11 @@ func main() {
 		}
 		if sum == 0 {
 			fmt.Printf(
-				"None of Emojis found by a shortcode %s\n",
+				"None of emojis found by a shortcode %s\n",
 				color.HiYellowString(lookupKeyword),
 			)
 		}
-		fmt.Println(color.HiBlueString("Total number of Emojis: "), sum)
+		fmt.Println(color.HiBlueString("Total number of emojis: "), sum)
 		os.Exit(0)
 	}
 
