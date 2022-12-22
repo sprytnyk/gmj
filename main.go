@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"sort"
+	"strings"
 
 	"github.com/fatih/color"
 )
@@ -38,13 +39,14 @@ func main() {
 
 	flag.Parse()
 
-	if *emojisList {
-		keys := make([]string, 0, len(Emojis))
-		for key := range Emojis {
-			keys = append(keys, key)
-		}
-		sort.Strings(keys)
+	keys := make([]string, 0, len(Emojis))
+	for key := range Emojis {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
 
+	if *emojisList {
+		fmt.Println(color.HiBlueString("Codepoint - Shortcode - Usage"))
 		for _, key := range keys {
 			fmt.Printf(
 				"%s - :%s: - %s\n",
@@ -61,18 +63,42 @@ func main() {
 	}
 
 	if len(*lookupKeyword) > 0 {
-		fmt.Println("WIP")
+		sum := 0
+		fmt.Println(color.HiBlueString("Codepoint - Shortcode - Usage"))
+		lookupKeyword := strings.ToLower(*lookupKeyword)
+		for _, key := range keys {
+			usage := strings.ToLower(Emojis[key]["usage"])
+			key := strings.ToLower(key)
+			if strings.Contains(usage, lookupKeyword) ||
+				strings.Contains(key, lookupKeyword) {
+				fmt.Printf(
+					"%s - :%s: - %s\n",
+					Emojis[key]["codepoint"],
+					color.RedString(key),
+					color.CyanString(Emojis[key]["usage"]),
+				)
+				sum += 1
+			}
+		}
+		if sum == 0 {
+			fmt.Printf(
+				"None of Emojis found by a shortcode %s\n",
+				color.HiYellowString(lookupKeyword),
+			)
+		}
+		fmt.Println(color.HiBlueString("Total number of Emojis: "), sum)
 		os.Exit(0)
 	}
 
 	if len(*emojiCode) > 0 {
-		value, key := Emojis[*emojiCode]
+		emojiCode := strings.ToLower(*emojiCode)
+		value, key := Emojis[emojiCode]
 		if key {
 			fmt.Println(value["codepoint"])
 		} else {
 			fmt.Printf(
-				"Cannot get an emoji by a shortcode: %s.\n",
-				color.HiRedString(*emojiCode),
+				"Cannot get an emoji by a shortcode: %s\n",
+				color.HiRedString(emojiCode),
 			)
 			os.Exit(1)
 		}
@@ -80,14 +106,15 @@ func main() {
 	}
 
 	if len(*emojiUsage) > 0 {
-		value, key := Emojis[*emojiUsage]
+		emojiUsage := strings.ToLower(*emojiUsage)
+		value, key := Emojis[emojiUsage]
 		if key {
-			fmt.Printf("%s\n", color.YellowString(value["usage"]))
+			fmt.Printf("%s\n", color.HiBlueString(value["usage"]))
 			os.Exit(0)
 		} else {
 			fmt.Printf(
-				"Cannot get an emoji usage by a shortcode: %s.\n",
-				color.HiRedString(*emojiCode),
+				"Cannot get an emoji usage by a shortcode: %s\n",
+				color.HiRedString(emojiUsage),
 			)
 			os.Exit(1)
 		}
