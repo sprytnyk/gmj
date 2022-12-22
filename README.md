@@ -11,10 +11,12 @@ https://gitmoji.dev/
 In order to install util invoke:
 
 ```sh
-$ go install github.com/vald-phoenix/gmj@latest
+$ go install github.com/vald-phoenix/gmj@v0.1.0
 ```
 
-You may do something like this when commit as well:
+Or download binaries from release page corresponding to your OS.
+
+You may do something like this when committing as well:
 
 ```sh
 $ git commit -m "$(gmj -c memo) Update README"
