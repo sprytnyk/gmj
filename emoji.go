@@ -1,6 +1,7 @@
 package main
 
-// Emojis map contains all available codepoints to be used in commit messages.
+// Emojis map holds a whole information to create a commit message like
+// shortcodes, codepoints, and rationale.
 var Emojis = map[string]map[string]string{
 	"art": {
 		"codepoint": "🎨",
