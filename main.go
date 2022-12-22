@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"sort"
 
 	"github.com/fatih/color"
 )
@@ -38,14 +39,24 @@ func main() {
 	flag.Parse()
 
 	if *emojisList {
-		for key, value := range Emojis {
+		keys := make([]string, 0, len(Emojis))
+		for key := range Emojis {
+			keys = append(keys, key)
+		}
+		sort.Strings(keys)
+
+		for _, key := range keys {
 			fmt.Printf(
 				"%s - :%s: - %s\n",
-				value["value"],
+				Emojis[key]["codepoint"],
 				color.RedString(key),
-				color.CyanString(value["usage"]),
+				color.CyanString(Emojis[key]["usage"]),
 			)
 		}
+		fmt.Println(
+			color.HiBlueString("Total number of Emojis: "),
+			len(keys),
+		)
 		os.Exit(0)
 	}
 
