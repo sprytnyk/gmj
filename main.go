@@ -11,18 +11,18 @@ import (
 
 const usage = `Usage of gmj:
 
-    $ gmj -l
-    Lists all available emojis, its codepoint, shortcode, and usage.
+	$ gmj -l
+	Lists all available emojis, its codepoint, shortcode, and usage.
 
-    $ gmj -c bug
-    Gets an emoji codepoint by a provided short code.
+	$ gmj -c bug
+	Gets an emoji codepoint by a provided short code.
 
-    $ gmj -u bug
-    Shows a use case by a provided shortcode.
+	$ gmj -u bug
+	Shows a use case by a provided shortcode.
 
-    $ gmj -s dev
-    Goes through a list of emojis and returns more feasiable codepoints to be
-    used by a provided keyword.
+	$ gmj -s dev
+	Goes through a list of emojis and returns more feasiable codepoints to be
+	used by a provided keyword.
 
 `
 
@@ -66,13 +66,31 @@ func main() {
 	}
 
 	if len(*emojiCode) > 0 {
-		fmt.Println(Emojis[*emojiCode]["value"])
+		value, key := Emojis[*emojiCode]
+		if key {
+			fmt.Println(value["codepoint"])
+		} else {
+			fmt.Printf(
+				"Cannot get an emoji by a shortcode: %s.\n",
+				color.HiRedString(*emojiCode),
+			)
+			os.Exit(1)
+		}
 		os.Exit(0)
 	}
 
 	if len(*emojiUsage) > 0 {
-		fmt.Println(Emojis[*emojiUsage]["usage"])
-		os.Exit(0)
+		value, key := Emojis[*emojiUsage]
+		if key {
+			fmt.Printf("%s\n", color.YellowString(value["usage"]))
+			os.Exit(0)
+		} else {
+			fmt.Printf(
+				"Cannot get an emoji usage by a shortcode: %s.\n",
+				color.HiRedString(*emojiCode),
+			)
+			os.Exit(1)
+		}
 	}
 
 	flag.Usage()
