@@ -295,4 +295,9 @@ var Emojis = map[string]map[string]string{
 		"codepoint": "🦺",
 		"usage":     "Add or update code related to validation.",
 	},
+	"whale": {
+		"codepoint": "🐳",
+		"usage":     "Add or update code related to Docker.",
+	},
+
 }
