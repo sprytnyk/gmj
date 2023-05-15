@@ -1,4 +1,4 @@
-module github.com/vald-phoenix/gmj
+module github.com/britonad/gmj
 
 go 1.19
 
