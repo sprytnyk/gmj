@@ -11,7 +11,7 @@ https://gitmoji.dev/
 In order to install util invoke:
 
 ```sh
-$ go install github.com/britonad/gmj@v0.1.0
+$ go install github.com/britonad/gmj@master
 ```
 
 Or download binaries from release page corresponding to your OS.
