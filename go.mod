@@ -1,4 +1,4 @@
-module github.com/britonad/gmj
+module github.com/sprytnyk/gmj
 
 go 1.19
 

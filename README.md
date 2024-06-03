@@ -6,12 +6,12 @@ A simple CLI util written in Go to eliminate searching manually through
 the list of codepoints, shortcodes, and rationale messages on
 https://gitmoji.dev/
 
-![Example](https://raw.githubusercontent.com/britonad/gmj/master/media/example.svg)
+![Example](https://raw.githubusercontent.com/sprytnyk/gmj/master/media/example.svg)
 
 In order to install util invoke:
 
 ```sh
-$ go install github.com/britonad/gmj@master
+$ go install github.com/sprytnyk/gmj@master
 ```
 
 Or download binaries from release page corresponding to your OS.
